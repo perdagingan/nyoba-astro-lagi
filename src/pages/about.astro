@@ -1,7 +1,6 @@
 ---
 import "../styles/global.css"
-import Header from "../components/Header.astro";
-import Footer from '../components/Footer.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 const pageTitle = "About Me";
 
 const identity = {
@@ -21,53 +20,45 @@ const skillColor = "navy";
 const fontWeight = "bold";
 const textCase = "uppercase";
 ---
-<html>
-    <head lang="en">
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{pageTitle}</title>
-    </head>
-    <body>
-        <Header />
 
-        <h1>{pageTitle}</h1>
-        <h2>... and my new Astro-powered site!</h2>
+<BaseLayout>
 
-        <p>I am working through Astro's introductory tutorial. This is the second page on my website and it's the first one i built myself!</p>
+<h1>{pageTitle}</h1>
+<h2>... and my new Astro-powered site!</h2>
 
-        <p>This site will update as I complete more of the tutorial, so keep checking back and see my journey is going!</p>
+<p>I am working through Astro's introductory tutorial. This is the second page on my website and it's the first one i built myself!</p>
 
-        <p>Here are a few facts about me:</p>
-        <ul>
-            <li>My name is {identity.firstName}.</li>
-            <li>I live in {identity.country} and i work as a {identity.occupation}.</li>
-            <li>Some of my hobbies are: {identity.hobbies.join(', ')}.</li>
-        </ul>
-        <p>My skills are:</p>
-        <ul>
-            {skills.map((skill) => <li class="skill">{skill}</li>)}
-        </ul>
+<p>This site will update as I complete more of the tutorial, so keep checking back and see my journey is going!</p>
 
-        <h3>Some conditional page rendering below:</h3>
-        {happy && <p>I am happy to be learning Astro!</p>}
-        
-        {finished && <p>I finished this tutorial!</p>}
-        
-        {goal === 3 ? <p>My goal is to finish in 3 days</p> : <p>My goal is not 3 days however...</p>}
+<p>Here are a few facts about me:</p>
+<ul>
+    <li>My name is {identity.firstName}.</li>
+    <li>I live in {identity.country} and i work as a {identity.occupation}.</li>
+    <li>Some of my hobbies are: {identity.hobbies.join(', ')}.</li>
+</ul>
+<p>My skills are:</p>
+<ul>
+    {skills.map((skill) => <li class="skill">{skill}</li>)}
+</ul>
 
-        <Footer />
+<h3>Some conditional page rendering below:</h3>
+{happy && <p>I am happy to be learning Astro!</p>}
 
-        <style define:vars={{skillColor, fontWeight, textCase}}>
-            h1 {
-                color: purple;
-                font-size: 4rem;
-            }
-            .skill {
-                color: var(--skillColor);
-                font-weight: var(--fontWeight);
-                text-transform: var(--textCase);
-            }
+{finished && <p>I finished this tutorial!</p>}
 
-        </style>
-    </body>
-</html>
+{goal === 3 ? <p>My goal is to finish in 3 days</p> : <p>My goal is not 3 days however...</p>}
+
+</BaseLayout>
+
+<style define:vars={{skillColor, fontWeight, textCase}}>
+    h1 {
+        color: purple;
+        font-size: 4rem;
+    }
+    .skill {
+        color: var(--skillColor);
+        font-weight: var(--fontWeight);
+        text-transform: var(--textCase);
+    }
+
+</style>
